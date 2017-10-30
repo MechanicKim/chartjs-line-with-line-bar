@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+
+  <title>AIM Chart</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <meta name="description" content="AIM Chart">
+  <meta name="author" content="Minkyu Jason Kim">
+
+  <style>
+  </style>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
+  <script type="text/javascript" src="chart.js"></script>
+</head>
+
+<body>
+  <div>
+    <canvas id="chart"></canvas>
+  </div>
+
+  <script>
+  function getDummyData() {
+    var labels = [];
+    var data = [];
+    for (var i = 0; i <= 100; i++) {
+      labels.push(i);
+      data.push(i === 0 ? 0 : data[i - 1] + (100 / i));
+    }
+
+    return { labels: labels, data: data };
+  }
+
+  window.onload = function() {
+    var dummyData = getDummyData();
+    var canvas = document.getElementById("chart");
+    canvas.width = 500;
+    canvas.height = 400;
+
+    var ctx = canvas.getContext("2d");
+    draw(ctx, dummyData.labels, dummyData.data, 'rgb(255, 159, 64)', 'rgb(54, 162, 235)');
+  }
+  </script>
+</body>
+</html>
